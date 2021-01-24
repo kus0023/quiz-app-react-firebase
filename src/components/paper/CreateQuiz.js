@@ -28,11 +28,13 @@ class CreateQuiz extends Component {
     e.preventDefault();
     // console.log(this.state);
     this.props.getPaper(this.state);
-    this.props.history.push("/paper");
   };
   render() {
-    const { auth } = this.props;
+    const { auth, paper } = this.props;
     if (!auth.uid) return <Redirect to="/signin" />;
+
+    if (paper.examStarted || paper.isLoading) return <Redirect to="/paper" />;
+
     return (
       <div className="container">
         <form onSubmit={this.handleSubmit} className="white">
@@ -104,6 +106,7 @@ class CreateQuiz extends Component {
 const mapStateToProps = (state) => {
   return {
     auth: state.firebase.auth,
+    paper: state.paper,
   };
 };
 
@@ -120,7 +123,7 @@ const category = [
   { id: 10, name: "Entertainment: Books" },
   { id: 11, name: "Entertainment: Film" },
   { id: 12, name: "Entertainment: Music" },
-  // { id: 13, name: "Entertainment: Musicals & Theatres" },
+  { id: 13, name: "Entertainment: Musicals & Theatres" },
   { id: 14, name: "Entertainment: Television" },
   { id: 15, name: "Entertainment: Video Games" },
   { id: 16, name: "Entertainment: Board Games" },

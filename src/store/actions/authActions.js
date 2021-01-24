@@ -5,6 +5,7 @@ import {
   SIGNUP_ERROR,
   SIGNUP_SUCCESS,
 } from "../types/authType";
+import M from "materialize-css/dist/js/materialize.min.js";
 
 export const signIn = (credentials) => {
   return (dispatch, getState, { getFirebase }) => {
@@ -14,6 +15,9 @@ export const signIn = (credentials) => {
       .auth()
       .signInWithEmailAndPassword(credentials.email, credentials.password)
       .then(() => {
+        M.toast({
+          html: "Welcome User",
+        });
         dispatch({ type: LOGIN_SUCCESS });
       })
       .catch((err) => {
@@ -54,6 +58,9 @@ export const signUp = (user) => {
           });
       })
       .then(() => {
+        M.toast({
+          html: "Welcome " + user.firstName + " " + user.lastName,
+        });
         dispatch({ type: SIGNUP_SUCCESS });
       })
       .catch((err) => {

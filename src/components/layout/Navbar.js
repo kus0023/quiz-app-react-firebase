@@ -11,10 +11,11 @@ class Navbar extends Component {
 
   //   document.addEventListener("DOMContentLoaded", function () {
   //     var elems = document.querySelectorAll(".sidenav");
-  //     M.Sidenav.init(elems, {
+  //     const instance = M.Sidenav.init(elems, {
   //       edge: "left",
   //       inDuration: 250,
   //     });
+  //     instance.open();
   //   });
   // }
 
@@ -31,7 +32,7 @@ class Navbar extends Component {
             {/* <Link to="#" data-target="slide-out" className="sidenav-trigger">
               <i className="material-icons">menu</i>
             </Link> */}
-            <ul id="nav-mobile" className="right">
+            <ul id="nav-mobile" className="right  ">
               {links}
             </ul>
           </div>

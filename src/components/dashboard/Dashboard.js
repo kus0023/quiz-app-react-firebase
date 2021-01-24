@@ -9,9 +9,11 @@ import { Redirect } from "react-router-dom";
 
 class Dashboard extends Component {
   render() {
-    const { auth } = this.props;
+    const { auth, paper } = this.props;
 
     if (!auth.uid) return <Redirect to="/signin" />;
+
+    if (!paper.isLoading && paper.examStarted) return <Redirect to="/paper" />;
     return (
       <div className="dashboard container">
         <div className="row">
@@ -26,6 +28,7 @@ class Dashboard extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    paper: state.paper,
     quizes: state.firestore.ordered.papers,
     auth: state.firebase.auth,
   };

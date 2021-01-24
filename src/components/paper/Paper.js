@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { submitPaper } from "../../store/actions/paperActions";
+import LinearLoader from "../loader/LinearLoader";
+import PaperInformation from "./PaperInformation";
 import QuestionList from "./QuestionList";
 
 class Paper extends Component {
@@ -52,21 +54,27 @@ class Paper extends Component {
   };
 
   render() {
-    const { auth } = this.props;
+    const { auth, paper } = this.props;
 
     if (!auth.uid) return <Redirect to="signin" />;
-    console.log(this.props.paper.questions);
+    // console.log(this.props.paper.questions);
 
-    if (this.props.paper.questions === null) {
+    if (paper.isLoading) {
       return (
-        <div>
+        <div className="container">
           <h1>Loading...</h1>
+          <LinearLoader />
         </div>
       );
     }
 
+    if (!paper.examStarted) {
+      return <Redirect to="/create" />;
+    }
+
     return (
       <div className="container">
+        <PaperInformation />
         <div className="row">
           <div className="col s12 m11">
             <QuestionList
