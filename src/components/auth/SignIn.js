@@ -31,6 +31,10 @@ export class SignIn extends Component {
             className="white col s12 m6 offset-m3"
           >
             <h5 className="grey-text text-darken-3">Log In</h5>
+
+            <div className="red-text center">
+              {authError ? <p>{authError.message}</p> : ""}
+            </div>
             <div className="input-field">
               <label htmlFor="email">Email</label>
               <input type="email" id="email" onChange={this.handleChange} />
@@ -45,10 +49,6 @@ export class SignIn extends Component {
             </div>
             <div className="input-field">
               <button className="btn pink lighten-1 z-depth-0">Login</button>
-            </div>
-
-            <div className="red-text center">
-              {authError ? <p>{authError}</p> : ""}
             </div>
           </form>
         </div>

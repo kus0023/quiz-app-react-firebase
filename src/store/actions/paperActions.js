@@ -1,5 +1,10 @@
 import axios from "axios";
-import { CLOSE_PAPER, CREATE_PAPER, SUBMIT_ERROR } from "../types/paperTypes";
+import {
+  CLOSE_PAPER,
+  CREATE_PAPER,
+  CREATE_PAPER_ERROR,
+  SUBMIT_ERROR,
+} from "../types/paperTypes";
 
 export const getPaper = (configs) => {
   return (dispatch, getState) => {
@@ -10,6 +15,9 @@ export const getPaper = (configs) => {
     axios
       .get(url)
       .then((res) => {
+        if (res.data.results.length === 0) {
+          throw Error("No Data Found");
+        }
         const data = res.data.results.map((q) => {
           const { question, incorrect_answers, correct_answer } = q;
           return {
@@ -39,6 +47,7 @@ export const getPaper = (configs) => {
       })
       .catch((err) => {
         console.log(err);
+        dispatch({ type: CREATE_PAPER_ERROR, err });
       });
   };
 };

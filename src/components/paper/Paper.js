@@ -55,6 +55,7 @@ class Paper extends Component {
     const { auth } = this.props;
 
     if (!auth.uid) return <Redirect to="signin" />;
+    console.log(this.props.paper.questions);
 
     if (this.props.paper.questions === null) {
       return (

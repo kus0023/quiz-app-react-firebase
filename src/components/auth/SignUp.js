@@ -33,7 +33,7 @@ export class SignUp extends Component {
           >
             <h5 className="grey-text text-darken-3">Register</h5>
             <div className=" red-text center">
-              {authError ? <p>{authError}</p> : ""}
+              {authError ? <p>{authError.message}</p> : ""}
             </div>
 
             <div className="input-field">

@@ -5,7 +5,7 @@ import { signOut } from "../../store/actions/authActions";
 
 function SignedInLinks(props) {
   return (
-    <ul className="right">
+    <ul className="right ">
       <li>
         <NavLink to="/create">Start Quiz</NavLink>
       </li>

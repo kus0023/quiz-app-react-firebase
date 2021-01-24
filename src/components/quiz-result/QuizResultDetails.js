@@ -36,12 +36,12 @@ function QuizDetails(props) {
               return (
                 <div
                   key={i}
-                  class={`card z-index-1 col s-12 m-10 ${cardColor}`}
+                  className={`card z-index-1 col s-12 m-10 ${cardColor}`}
                 >
                   {q.user === q.correct_answer ? (
-                    <span class="material-icons">done_outline</span>
+                    <span className="material-icons">done_outline</span>
                   ) : (
-                    <span class="material-icons">close</span>
+                    <span className="material-icons">close</span>
                   )}
                   <p
                     className=""

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import QuizResultSummary from "./QuizResultSummary";
 
 function QuizResultList({ quizes }) {
-  if (quizes.length === 0) {
+  if (quizes && quizes.length === 0) {
     return <div className="center">There are no content to show</div>;
   }
   return (

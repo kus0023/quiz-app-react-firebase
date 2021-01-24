@@ -26,3 +26,6 @@ debug.log
 
 #firebase config file
 src/config/firebaseConfig.js
+.firebase/
+.firebaserc
+firebase.json

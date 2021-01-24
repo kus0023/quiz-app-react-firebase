@@ -1,6 +1,7 @@
 import {
   CLOSE_PAPER,
   CREATE_PAPER,
+  CREATE_PAPER_ERROR,
   SUBMIT_ERROR,
   SUBMIT_PAPER,
 } from "../types/paperTypes";
@@ -20,6 +21,15 @@ const paperReducer = (state = init, action) => {
         questions: action.payload.data,
         formattedQuestions: action.payload.formattedData,
         description: action.payload.description,
+      };
+
+    case CREATE_PAPER_ERROR:
+      console.log(CREATE_PAPER_ERROR, action.err);
+      return {
+        ...state,
+        questions: null,
+        formattedQuestions: null,
+        description: null,
       };
 
     case SUBMIT_PAPER:

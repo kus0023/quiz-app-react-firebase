@@ -8,13 +8,11 @@ function Navbar(props) {
   const { auth } = props;
   const links = auth.uid ? <SignedInLinks /> : <SignedOutLinks />;
   return (
-    <nav className="nav-wrapper grey darken-3">
-      <div className="container">
-        <div className="left">
-          <Link to="/" className="brand-logo">
-            Quiz App
-          </Link>
-        </div>
+    <nav>
+      <div className="nav-wrapper grey darken-3 ">
+        <Link to="/" className="brand-logo left">
+          Quiz App
+        </Link>
 
         {links}
       </div>
