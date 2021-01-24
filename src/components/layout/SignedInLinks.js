@@ -5,24 +5,24 @@ import { signOut } from "../../store/actions/authActions";
 
 function SignedInLinks(props) {
   return (
-    <ul className="right ">
+    <>
+      {/* <li>
+        <NavLink to="/">Dashboard</NavLink>
+      </li> */}
       <li>
         <NavLink to="/create">Start Quiz</NavLink>
       </li>
       <li>
-        <button
-          className="waves-effect waves-teal btn-flat white-text"
-          onClick={props.signOut}
-        >
-          Logout
-        </button>
+        <NavLink to="#!">
+          <div onClick={props.signOut}>Logout</div>
+        </NavLink>
       </li>
       <li>
         <NavLink to="/" className="btn btn-floating pink lighten-1">
           {props.firebase.profile.initials}
         </NavLink>
       </li>
-    </ul>
+    </>
   );
 }
 

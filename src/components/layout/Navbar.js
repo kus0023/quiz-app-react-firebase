@@ -1,23 +1,48 @@
-import React from "react";
+import React, { Component } from "react";
+// import M from "materialize-css/dist/js/materialize.min.js";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import SignedInLinks from "./SignedInLinks";
 import SignedOutLinks from "./SignedOutLinks";
 
-function Navbar(props) {
-  const { auth } = props;
-  const links = auth.uid ? <SignedInLinks /> : <SignedOutLinks />;
-  return (
-    <nav>
-      <div className="nav-wrapper grey darken-3 ">
-        <Link to="/" className="brand-logo left">
-          Quiz App
-        </Link>
+class Navbar extends Component {
+  // componentDidMount() {
+  //   console.log(M);
 
-        {links}
-      </div>
-    </nav>
-  );
+  //   document.addEventListener("DOMContentLoaded", function () {
+  //     var elems = document.querySelectorAll(".sidenav");
+  //     M.Sidenav.init(elems, {
+  //       edge: "left",
+  //       inDuration: 250,
+  //     });
+  //   });
+  // }
+
+  render() {
+    const { auth } = this.props;
+    const links = auth.uid ? <SignedInLinks /> : <SignedOutLinks />;
+    return (
+      <>
+        <nav>
+          <div className="nav-wrapper">
+            <Link to="/" className="brand-logo left">
+              Quiz
+            </Link>
+            {/* <Link to="#" data-target="slide-out" className="sidenav-trigger">
+              <i className="material-icons">menu</i>
+            </Link> */}
+            <ul id="nav-mobile" className="right">
+              {links}
+            </ul>
+          </div>
+        </nav>
+
+        {/* <ul className="sidenav" id="slide-out">
+          {links}
+        </ul> */}
+      </>
+    );
+  }
 }
 const mapStateToProps = (state) => {
   // console.log(state);
