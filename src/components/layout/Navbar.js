@@ -1,47 +1,86 @@
 import React, { Component } from "react";
-// import M from "materialize-css/dist/js/materialize.min.js";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import SignedInLinks from "./SignedInLinks";
 import SignedOutLinks from "./SignedOutLinks";
 
 class Navbar extends Component {
-  // componentDidMount() {
-  //   console.log(M);
+  componentDidMount() {
+    const M = window.M;
 
-  //   document.addEventListener("DOMContentLoaded", function () {
-  //     var elems = document.querySelectorAll(".sidenav");
-  //     const instance = M.Sidenav.init(elems, {
-  //       edge: "left",
-  //       inDuration: 250,
-  //     });
-  //     instance.open();
-  //   });
-  // }
+    const options = {
+      draggable: true,
+    };
+
+    var elems = document.querySelectorAll(".sidenav");
+    const instance = M.Sidenav.init(elems, options);
+
+    elems = document.querySelectorAll(".tooltipped");
+    var instances = M.Tooltip.init(elems, options);
+  }
 
   render() {
-    const { auth } = this.props;
-    const links = auth.uid ? <SignedInLinks /> : <SignedOutLinks />;
-    return (
-      <>
-        <nav>
-          <div className="nav-wrapper">
-            <Link to="/" className="brand-logo left">
-              Quiz
-            </Link>
-            {/* <Link to="#" data-target="slide-out" className="sidenav-trigger">
-              <i className="material-icons">menu</i>
-            </Link> */}
-            <ul id="nav-mobile" className="right  ">
-              {links}
-            </ul>
-          </div>
-        </nav>
+    const { auth, profile } = this.props;
 
-        {/* <ul className="sidenav" id="slide-out">
-          {links}
-        </ul> */}
-      </>
+    // console.log(profile, auth);
+    return (
+      <div>
+        <div className="navbar-fixed">
+          <nav>
+            <div className="nav-wrapper deep-orange darken-3">
+              <Link
+                to="#"
+                data-target="slide-out"
+                className="sidenav-trigger show-on-large"
+              >
+                <i className="material-icons">menu</i>
+              </Link>
+              <Link to="/" className="brand-logo">
+                Quiz App
+              </Link>
+              <ul id="nav-mobile" className="right hide-on-med-and-down">
+                {auth.uid ? (
+                  <SignedInLinks inSidebar={false} />
+                ) : (
+                  <SignedOutLinks />
+                )}
+              </ul>
+            </div>
+          </nav>
+        </div>
+
+        <ul id="slide-out" className="sidenav">
+          {auth.uid && (
+            <li>
+              <div className="user-view">
+                <div className="background">
+                  <img src="https://materializecss.com/images/office.jpg" />
+                </div>
+                <Link to="#">
+                  <img
+                    className="circle"
+                    src="https://materializecss.com/images/yuna.jpg"
+                  />
+                </Link>
+                <Link to="#">
+                  <span className="white-text name">
+                    {`${profile.firstName} ${profile.lastName}`.toUpperCase()}
+                  </span>
+                </Link>
+                <Link to="#">
+                  <span className="white-text email">{auth.email}</span>
+                </Link>
+              </div>
+            </li>
+          )}
+          <li>
+            {/* <Link href="#!">
+              <i className="material-icons">cloud</i>First Link With Icon
+            </Link> */}
+          </li>
+          {auth.uid ? <SignedInLinks inSidebar={true} /> : <SignedOutLinks />}
+        </ul>
+      </div>
     );
   }
 }

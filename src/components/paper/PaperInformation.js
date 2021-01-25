@@ -2,10 +2,10 @@ import React from "react";
 
 function PaperInformation() {
   return (
-    <div className="container">
+    <div className="">
       <div className="row red-text red lighten-5">
-        <h3>Instructions</h3>
-        <ul>
+        <h3 className="App">Instructions</h3>
+        <ol>
           <li>
             <p>Do not refresh Page.</p>
           </li>
@@ -15,7 +15,7 @@ function PaperInformation() {
           <li>
             <p>No negative marking.</p>
           </li>
-        </ul>
+        </ol>
       </div>
     </div>
   );

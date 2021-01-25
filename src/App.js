@@ -7,21 +7,24 @@ import SignIn from "./components/auth/SignIn";
 import SignUp from "./components/auth/SignUp";
 import CreateQuiz from "./components/paper/CreateQuiz";
 import Paper from "./components/paper/Paper";
-function App() {
+import { connect } from "react-redux";
+function App(props) {
   return (
-    <BrowserRouter>
-      <div className="App">
+    <div>
+      <BrowserRouter>
         <NavBar />
-        <Switch>
-          <Route path="/" component={Dashboard} exact></Route>
-          <Route path="/paper/:id" component={QuizResultDetails}></Route>
-          <Route path="/signin" component={SignIn}></Route>
-          <Route path="/signup" component={SignUp}></Route>
-          <Route path="/create" component={CreateQuiz}></Route>
-          <Route path="/paper" component={Paper}></Route>
-        </Switch>
-      </div>
-    </BrowserRouter>
+        <div className="">
+          <Switch>
+            <Route path="/" component={Dashboard} exact></Route>
+            <Route path="/paper/:id" component={QuizResultDetails}></Route>
+            <Route path="/signin" component={SignIn}></Route>
+            <Route path="/signup" component={SignUp}></Route>
+            <Route path="/create" component={CreateQuiz}></Route>
+            <Route path="/paper" component={Paper}></Route>
+          </Switch>
+        </div>
+      </BrowserRouter>
+    </div>
   );
 }
 

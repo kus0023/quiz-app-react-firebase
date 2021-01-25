@@ -2,14 +2,13 @@ import React from "react";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { signOut } from "../../store/actions/authActions";
-import M from "materialize-css/dist/js/materialize.min.js";
 
 function SignedInLinks(props) {
   const logOut = () => {
     const options = {
       html: "Logged Out.",
     };
-    M.toast(options);
+    window.M.toast(options);
     props.signOut();
   };
   return (
@@ -28,13 +27,15 @@ function SignedInLinks(props) {
       <li>
         <NavLink
           to="/"
-          className="btn btn-floating pink lighten-1 tooltipped"
+          className={
+            props.inSidebar ? "" : "btn btn-floating pink lighten-1 tooltipped"
+          }
           data-position="bottom"
-          data-tooltip={`props.firebase.profile.firstName +
-            " " +
-            props.firebase.profile.lastName`}
+          data-tooltip={`${props.firebase.profile.firstName} ${props.firebase.profile.lastName}`.toUpperCase()}
         >
-          {props.firebase.profile.initials}
+          {props.inSidebar
+            ? `${props.firebase.profile.firstName} ${props.firebase.profile.lastName}`.toUpperCase()
+            : props.firebase.profile.initials}
         </NavLink>
       </li>
     </>

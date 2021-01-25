@@ -25,7 +25,7 @@ export class SignUp extends Component {
 
     if (auth.uid) return <Redirect to="/" />;
     return (
-      <div className="container">
+      <div className="App container">
         <div className="row section">
           <form
             onSubmit={this.handleSubmit}

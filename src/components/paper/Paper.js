@@ -83,12 +83,15 @@ class Paper extends Component {
             />
           </div>
         </div>
-        <button
-          className="btn pink lighten-1 z-depth-0"
-          onClick={this.onSubmitExam}
-        >
-          Submit
-        </button>
+        <div className="App">
+          <button
+            className="btn orange darken-3 z-depth-0 btn-large"
+            onClick={this.onSubmitExam}
+          >
+            Submit
+          </button>
+        </div>
+
         <br />
         <br />
       </div>

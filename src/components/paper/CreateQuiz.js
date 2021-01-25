@@ -36,7 +36,7 @@ class CreateQuiz extends Component {
     if (paper.examStarted || paper.isLoading) return <Redirect to="/paper" />;
 
     return (
-      <div className="container">
+      <div className="App container">
         <form onSubmit={this.handleSubmit} className="white">
           <h3 className="grey-text text-darken-3">Exam Board</h3>
           <br />

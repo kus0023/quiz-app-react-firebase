@@ -6,7 +6,6 @@ import {
   LOADING_PAPER,
   SUBMIT_ERROR,
 } from "../types/paperTypes";
-import M from "materialize-css/dist/js/materialize.min.js";
 
 const getToken = async () => {
   const tokenUrl = "https://opentdb.com/api_token.php?command=request";
@@ -23,8 +22,14 @@ export const getPaper = (configs) => {
     let token = null;
     if (getState().paper.token === null) {
       token = await getToken();
+      window.M.toast({
+        html: "Token generated Successfully.",
+      });
     } else {
       token = getState().paper.token;
+      window.M.toast({
+        html: "Token already Exist.",
+      });
     }
     console.log(getState().paper, token);
     const url = `https://opentdb.com/api.php?amount=${amount}&category=${category}&type=${type}&difficulty=${difficulty}&token=${token}`;
@@ -64,7 +69,7 @@ export const getPaper = (configs) => {
       })
       .catch((err) => {
         console.log(err);
-        M.toast({
+        window.M.toast({
           html: "<h5>Paper Creation Failed.</h5>",
         });
         dispatch({ type: CREATE_PAPER_ERROR, err });
@@ -95,7 +100,7 @@ export const submitPaper = (paper) => (
     })
     .catch((err) => {
       dispatch({ type: SUBMIT_ERROR, error: err });
-      M.toast({
+      window.M.toast({
         html: "<p>Submition ERROR</p>",
       });
     });
