@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { submitPaper } from "../../store/actions/paperActions";
 import LinearLoader from "../loader/LinearLoader";
 import PaperInformation from "./PaperInformation";
@@ -11,12 +11,7 @@ class Paper extends Component {
     user: [],
   };
 
-  componentDidMount() {
-    const M = window.M;
-    const options = {};
-    var elems = document.querySelectorAll(".modal");
-    var instances = M.Modal.init(elems, options);
-  }
+  componentDidMount() {}
 
   onChange = (value, questionindex) => {
     // console.log(value, questionindex);
@@ -80,50 +75,30 @@ class Paper extends Component {
     }
 
     return (
-      <div className="container">
-        <PaperInformation />
-        <div className="row">
-          <div className="col s12 m11">
-            <QuestionList
-              list={this.props.paper.formattedQuestions}
-              onChange={this.onChange}
-            />
+      <>
+        <div className="container">
+          <PaperInformation />
+          <div className="row">
+            <div className="col s12">
+              <QuestionList
+                list={this.props.paper.formattedQuestions}
+                onChange={this.onChange}
+              />
+            </div>
           </div>
-        </div>
-        <div className="App">
-          <button
-            data-target="modal1"
-            className="btn orange darken-3 z-depth-0 btn-large modal-trigger"
-          >
-            Submit
-          </button>
-        </div>
-
-        <br />
-        <br />
-
-        {/* {<!-- Modal Structure -->} */}
-        <div id="modal1" className="modal">
-          <div className="modal-content">
-            <h4>Do You Really Want To Submit ?</h4>
-            <p>You can not edit it later.</p>
-          </div>
-          <div className="modal-footer">
-            <a
-              href="#!"
-              className="modal-close waves-effect waves-green btn-flat"
-            >
-              Back
-            </a>
+          <div className="row">
             <button
-              className="modal-close red white-text darken-1 waves-effect waves-red btn-flat"
+              className="red white-text darken-1 waves-effect waves-red btn-flat"
               onClick={this.onSubmitExam}
             >
               Submit
             </button>
+
+            <br />
+            <br />
           </div>
         </div>
-      </div>
+      </>
     );
   }
 }
