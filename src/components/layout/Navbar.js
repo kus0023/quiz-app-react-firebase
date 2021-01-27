@@ -42,7 +42,7 @@ class Navbar extends Component {
                 {auth.uid ? (
                   <SignedInLinks inSidebar={false} />
                 ) : (
-                  <SignedOutLinks />
+                  <SignedOutLinks inSidebar={false} />
                 )}
               </ul>
             </div>
@@ -62,6 +62,7 @@ class Navbar extends Component {
                     src="https://materializecss.com/images/yuna.jpg"
                   />
                 </Link>
+
                 <Link to="#">
                   <span className="white-text name">
                     {`${profile.firstName} ${profile.lastName}`.toUpperCase()}
@@ -74,11 +75,15 @@ class Navbar extends Component {
             </li>
           )}
           <li>
-            {/* <Link href="#!">
-              <i className="material-icons">cloud</i>First Link With Icon
-            </Link> */}
+            <Link to="/" className="sidenav-close">
+              <i className="material-icons">home</i>Dashboard
+            </Link>
           </li>
-          {auth.uid ? <SignedInLinks inSidebar={true} /> : <SignedOutLinks />}
+          {auth.uid ? (
+            <SignedInLinks inSidebar={true} />
+          ) : (
+            <SignedOutLinks inSidebar={true} />
+          )}
         </ul>
       </div>
     );

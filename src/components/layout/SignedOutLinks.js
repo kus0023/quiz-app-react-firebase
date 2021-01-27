@@ -1,14 +1,24 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-function SignedOutLinks() {
+function SignedOutLinks(props) {
   return (
     <>
       <li>
-        <NavLink to="/signup">SignUp</NavLink>
+        <NavLink
+          to="/signup"
+          className={props.inSidebar ? "sidenav-close" : ""}
+        >
+          {props.inSidebar && <i className="material-icons">face</i>}SignUp
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/signin">Login</NavLink>
+        <NavLink
+          to="/signin"
+          className={props.inSidebar ? "sidenav-close" : ""}
+        >
+          {props.inSidebar && <i className="material-icons">login</i>}Login
+        </NavLink>
       </li>
     </>
   );
