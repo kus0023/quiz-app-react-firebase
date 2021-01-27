@@ -31,7 +31,7 @@ export const getPaper = (configs) => {
         html: "Token already Exist.",
       });
     }
-    console.log(getState().paper, token);
+
     const url = `https://opentdb.com/api.php?amount=${amount}&category=${category}&type=${type}&difficulty=${difficulty}&token=${token}`;
     axios
       .get(url)
