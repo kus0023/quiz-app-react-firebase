@@ -17,8 +17,6 @@ export const signIn = (credentials) => {
         var name = "";
         const usersRef = firestore.collection("users");
         const snapshot = await usersRef.get();
-        console.log(firebase.auth());
-        console.log(getState());
         if (snapshot.empty) {
           console.log("No matching documents.");
         } else {
