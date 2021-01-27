@@ -84,6 +84,7 @@ export const submitPaper = (paper) => (
   dispatch({ type: LOADING_PAPER });
   const firestore = getFirestore();
   const userId = getState().firebase.auth.uid;
+  const date = new Date();
   firestore
     .collection("papers")
     .add({
@@ -91,8 +92,9 @@ export const submitPaper = (paper) => (
       userId,
       description: {
         ...paper.description,
-        createdAt: new Date(),
+        createdAt: date,
       },
+      time: date,
     })
     .then((doc) => {
       // console.log(doc);
