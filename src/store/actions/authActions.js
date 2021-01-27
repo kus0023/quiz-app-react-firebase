@@ -7,15 +7,30 @@ import {
 } from "../types/authType";
 
 export const signIn = (credentials) => {
-  return (dispatch, getState, { getFirebase }) => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
     const firebase = getFirebase();
-
+    const firestore = getFirestore();
     firebase
       .auth()
       .signInWithEmailAndPassword(credentials.email, credentials.password)
-      .then(() => {
+      .then(async (auth) => {
+        var name = "";
+        const usersRef = firestore.collection("users");
+        const snapshot = await usersRef.get();
+        console.log(firebase.auth());
+        console.log(getState());
+        if (snapshot.empty) {
+          console.log("No matching documents.");
+        } else {
+          snapshot.forEach((doc) => {
+            if (doc.id === auth.user.uid) {
+              name = doc.data().firstName + " " + doc.data().lastName;
+            }
+          });
+        }
+
         window.M.toast({
-          html: "Welcome User",
+          html: "Welcome " + name.toUpperCase(),
         });
         dispatch({ type: LOGIN_SUCCESS });
       })
