@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { signIn } from "../../store/actions/authActions";
+import CirculerColoredLoader from "../loader/CirculerColoredLoader";
 
 export class SignIn extends Component {
   state = {
@@ -19,9 +20,21 @@ export class SignIn extends Component {
     this.props.signIn(this.state);
   };
   render() {
-    const { authError, auth } = this.props;
+    const { authError, auth, isLoading } = this.props;
 
     if (auth.uid) return <Redirect to="/" />;
+
+    if (isLoading) {
+      return (
+        <div class="container center ">
+          <div class="row ">
+            <div class="col s12 m12 l12" style={{ marginTop: "200px" }}>
+              <CirculerColoredLoader />
+            </div>
+          </div>
+        </div>
+      );
+    }
 
     return (
       <div className="App container">
@@ -59,6 +72,7 @@ export class SignIn extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    isLoading: state.auth.isLoading,
     authError: state.auth.authError,
     auth: state.firebase.auth,
   };

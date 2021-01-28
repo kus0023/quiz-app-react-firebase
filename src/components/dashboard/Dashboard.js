@@ -39,7 +39,7 @@ const mapStateToProps = (state) => {
 export default compose(
   connect(mapStateToProps),
   firestoreConnect((props, state) => {
-    console.log(props);
+    // console.log(props);
     return [
       {
         collection: "papers",

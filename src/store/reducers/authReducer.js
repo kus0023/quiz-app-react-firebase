@@ -1,4 +1,6 @@
 import {
+  LOADING,
+  LOADING_FINISHED,
   LOGIN_ERROR,
   LOGIN_SUCCESS,
   SIGNOUT_SUCCESS,
@@ -8,10 +10,21 @@ import {
 
 const initState = {
   authError: null,
+  isLoading: false,
 };
 
 const authReducer = (state = initState, action) => {
   switch (action.type) {
+    case LOADING:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case LOADING_FINISHED:
+      return {
+        ...state,
+        isLoading: false,
+      };
     case LOGIN_ERROR:
       console.log("login error", action.err);
       return {

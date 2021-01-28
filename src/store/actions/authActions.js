@@ -1,4 +1,6 @@
 import {
+  LOADING,
+  LOADING_FINISHED,
   LOGIN_ERROR,
   LOGIN_SUCCESS,
   SIGNOUT_SUCCESS,
@@ -8,6 +10,7 @@ import {
 
 export const signIn = (credentials) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
+    dispatch({ type: LOADING });
     const firebase = getFirebase();
     const firestore = getFirestore();
     firebase
@@ -31,9 +34,11 @@ export const signIn = (credentials) => {
           html: "Welcome " + name.toUpperCase(),
         });
         dispatch({ type: LOGIN_SUCCESS });
+        dispatch({ type: LOADING_FINISHED });
       })
       .catch((err) => {
         dispatch({ type: LOGIN_ERROR, err });
+        dispatch({ type: LOADING_FINISHED });
       });
   };
 };
@@ -53,6 +58,7 @@ export const signOut = () => {
 
 export const signUp = (user) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
+    dispatch({ type: LOADING });
     const firebase = getFirebase();
     const firestore = getFirestore();
 
@@ -74,9 +80,11 @@ export const signUp = (user) => {
           html: "Welcome " + user.firstName + " " + user.lastName,
         });
         dispatch({ type: SIGNUP_SUCCESS });
+        dispatch({ type: LOADING_FINISHED });
       })
       .catch((err) => {
         dispatch({ type: SIGNUP_ERROR, err });
+        dispatch({ type: LOADING_FINISHED });
       });
   };
 };
