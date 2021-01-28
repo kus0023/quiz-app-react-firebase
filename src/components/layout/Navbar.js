@@ -74,11 +74,7 @@ class Navbar extends Component {
               </div>
             </li>
           )}
-          <li>
-            <Link to="/" className="sidenav-close">
-              <i className="material-icons">home</i>Dashboard
-            </Link>
-          </li>
+
           {auth.uid ? (
             <SignedInLinks inSidebar={true} />
           ) : (

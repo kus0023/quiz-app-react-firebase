@@ -13,9 +13,16 @@ function SignedInLinks(props) {
   };
   return (
     <>
-      {/* <li>
-        <NavLink to="/">Dashboard</NavLink>
-      </li> */}
+      {/*
+        hide in nav
+      */}
+
+      <li>
+        <NavLink to="/" className={props.inSidebar ? "sidenav-close" : ""}>
+          {props.inSidebar && <i className="material-icons">home</i>}Dashboard
+        </NavLink>
+      </li>
+
       <li>
         <NavLink
           to="/create"
