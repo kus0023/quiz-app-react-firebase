@@ -16,57 +16,64 @@ function QuizDetails(props) {
     return <div className="container center">Loading details...</div>;
   }
   const { description, questions } = props.paper;
+  // console.log(description, questions);
   return (
-    <div className="contianer section project-details">
-      <Link to="/">Back</Link>
-      <div className="card z-depth-0">
-        <div className="card-content">
-          <span className="card-title white-text purple">
-            {description.topic}
-          </span>
-          <div className="card-action grey lighten-4 grey-text">
-            <div>{moment(description.createdAt.toDate()).calendar()}</div>
-          </div>
+    <div className="container">
+      <div className="row">
+        <div className="col s12 m3 l4 flow-text">
+          <h4>{description.topic}</h4>
+          <p>
+            <strong>Difficulty: </strong>
+            {description.difficulty}
+          </p>
+          <p>
+            <strong>Date: </strong>
+            {moment(description.createdAt.toDate()).format("LLLL")}
+          </p>
+          <p>
+            <strong>Total: </strong>
+            {description.amount}
+          </p>
+          <p>
+            <strong>Score: </strong>
+            {description.score.obtain}/{description.score.max}
+          </p>
+        </div>
+        <div className="col s12 m6 l8 right">
           {questions &&
             questions.map((q, i) => {
-              var cardColor =
-                q.user === q.correct_answer
-                  ? "green lighten-5"
-                  : "purple lighten-5";
+              const isCorrect = q.user === q.correct_answer;
               return (
-                <div
-                  key={i}
-                  className={`card z-index-1 col s-12 m-10 ${cardColor}`}
-                >
-                  {q.user === q.correct_answer ? (
-                    <span className="material-icons">done_outline</span>
-                  ) : (
-                    <span className="material-icons">close</span>
-                  )}
-                  <p
-                    className=""
-                    dangerouslySetInnerHTML={{
-                      __html: `${i + 1}. ${q.question}`,
-                    }}
-                  ></p>
-
-                  {q.answers.map((a, i) => {
-                    var color = "";
-                    if (q.correct_answer === a) {
-                      color = "teal lighten-2";
-                    } else if (q.user === a) {
-                      color = "red lighten-2";
+                <ul className="collection with-header m0" key={i}>
+                  <li className="collection-header avatar">
+                    {isCorrect ? (
+                      <i className="material-icons circle green right">check</i>
+                    ) : (
+                      <i className="material-icons circle red right">close</i>
+                    )}
+                    <h5
+                      dangerouslySetInnerHTML={{
+                        __html: `${i + 1}. ${q.question}`,
+                      }}
+                    ></h5>
+                  </li>
+                  {q.answers.map((a, j) => {
+                    const green = " active green";
+                    const red = " active red";
+                    var color = null;
+                    if (a === q.user) {
+                      color = red;
+                    }
+                    if (a === q.correct_answer) {
+                      color = green;
                     }
                     return (
-                      <div key={i}>
-                        <p
-                          className={color}
-                          dangerouslySetInnerHTML={{ __html: `${a}` }}
-                        ></p>
-                      </div>
+                      <li key={j} className={"collection-item " + color}>
+                        {a}
+                      </li>
                     );
                   })}
-                </div>
+                </ul>
               );
             })}
         </div>
