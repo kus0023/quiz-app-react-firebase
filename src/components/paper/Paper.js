@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { submitPaper } from "../../store/actions/paperActions";
 import LinearLoader from "../loader/LinearLoader";
 import PaperInformation from "./PaperInformation";
@@ -64,8 +64,12 @@ class Paper extends Component {
     if (paper.isLoading) {
       return (
         <div className="container">
-          <h1>Loading...</h1>
-          <LinearLoader />
+          <div class="row center">
+            <div class="col s6 m6">
+              <h1>Loading...</h1>
+              <LinearLoader />
+            </div>
+          </div>
         </div>
       );
     }
@@ -86,16 +90,13 @@ class Paper extends Component {
               />
             </div>
           </div>
-          <div className="row">
+          <div className="row mb4 center">
             <button
-              className="red white-text darken-1 waves-effect waves-red btn-flat"
+              className=" red white-text darken-1 waves-effect waves-red btn-flat"
               onClick={this.onSubmitExam}
             >
               Submit
             </button>
-
-            <br />
-            <br />
           </div>
         </div>
       </>

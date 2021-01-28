@@ -2,26 +2,26 @@ import React from "react";
 
 function Question({ data, n, onChange }) {
   return (
-    <div className="container row col-12 left">
-      <div>
+    <>
+      <li className="collection-header">
         <h5
           dangerouslySetInnerHTML={{ __html: `${n + 1}. ${data.question}` }}
         ></h5>
-      </div>
+      </li>
 
       <div onChange={({ target }) => onChange(target.value, n)}>
         {data.answers.map((ans, i) => {
           return (
-            <p key={i}>
+            <li key={i} className="collection-item">
               <label>
                 <input name={`group${n}`} type="radio" value={ans} />
                 <span dangerouslySetInnerHTML={{ __html: ans }}></span>
               </label>
-            </p>
+            </li>
           );
         })}
       </div>
-    </div>
+    </>
   );
 }
 

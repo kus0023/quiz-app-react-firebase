@@ -29,3 +29,4 @@ src/config/firebaseConfig.js
 .firebase/
 .firebaserc
 firebase.json
+firebase-debug.log
