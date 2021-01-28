@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { submitPaper } from "../../store/actions/paperActions";
-import LinearLoader from "../loader/LinearLoader";
+import CirculerColoredLoader from "../loader/CirculerColoredLoader";
 import PaperInformation from "./PaperInformation";
 import QuestionList from "./QuestionList";
 
@@ -63,11 +63,10 @@ class Paper extends Component {
 
     if (paper.isLoading) {
       return (
-        <div className="container">
-          <div class="row center">
-            <div class="col s6 m6">
-              <h1>Loading...</h1>
-              <LinearLoader />
+        <div class="container center ">
+          <div class="row ">
+            <div class="col s12 m12 l12" style={{ marginTop: "200px" }}>
+              <CirculerColoredLoader />
             </div>
           </div>
         </div>
